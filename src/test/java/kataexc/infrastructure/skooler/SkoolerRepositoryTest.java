@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import sun.security.krb5.internal.rcache.AuthTimeWithHash;
 
 import java.util.List;
 
@@ -36,11 +37,19 @@ public class SkoolerRepositoryTest {
     }
 
     @Test
-    public void getSkoolerByPolygramShouldReturnCorrespondingSkooler() {
+    public void getSkoolerByPolygramShouldReturnCorrespondingSkooler()  {
         //given dirty context clean-up
         //when
         Skooler result = tested.getSkoolerByPolygram("QUEN");
         //then
         assertThat(result.getFirstName(), is("Quentin"));
+    }
+
+    @Test(expected = SkoolerNotFoundException.class)
+    public void getSkoolerByPolygramShouldThrowSkoolerNotFoundWhenNotFOund()  {
+        //given
+
+        //when
+        Skooler result = tested.getSkoolerByPolygram("khsgergerhehfkhf");
     }
 }

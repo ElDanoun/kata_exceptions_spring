@@ -26,7 +26,7 @@ public class SkoolerController {
     }
 
     @GetMapping(value = "/{polygram}", produces = "application/json")
-    public Skooler getSkooler(@PathVariable String polygram){
+    public Skooler getSkooler(@PathVariable String polygram) throws SkoolerNotFoundException {
         return skoolerRepository.getSkoolerByPolygram(polygram);
     }
 
